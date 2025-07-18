@@ -30,7 +30,7 @@ Pastikan mesin anda mempunyai:
 ### 1. Clone Projek Ini
 
 ```bash
-git clone https://github.com/username/todos.git
+git clone https://github.com/mzm-dev/laravel-todos.git
 cd todos
 ```
 
