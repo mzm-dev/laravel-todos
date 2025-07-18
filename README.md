@@ -1,61 +1,193 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ✅ TODOS - Sistem Pengurusan Tugasan (Laravel 12)
+**Todos** ialah sistem pengurusan tugasan yang dibina menggunakan Laravel 12. Sistem ini menyokong pengkategorian tugasan, penandaan (tags), dan pengurusan pengguna berasaskan peranan (role-based access control).
+> ⚠️ Projek ini dibina sebagai **contoh pembelajaran CRUD menggunakan Laravel**. Ia sesuai digunakan untuk tujuan pembelajaran, latihan, dan penyesuaian asas. Bukan untuk penggunaan produksi secara langsung tanpa pengubahsuaian keselamatan dan pengoptimuman lanjut.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+---
 
-## About Laravel
+## 📦 Fungsi Sistem
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+-   ✅ Cipta, Kemaskini & Hapus Tugasan
+-   ✅ Kategori & Tag untuk tugasan
+-   ✅ Role Management: Super Admin, Admin, User
+-   ✅ Interface: Livewire + TailwindCSS
+-   ✅ Sistem auth Laravel standard
+-   ✅ Interface responsif dan moden
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🧰 Keperluan Sistem
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Pastikan mesin anda mempunyai:
+- PHP >= 8.2
+- Composer
+- MySQL atau MariaDB
+- Node.js & npm
+- Git
+- Laravel CLI
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🚀 Langkah Setup Projek
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 1. Clone Projek Ini
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```bash
+git clone https://github.com/username/todos.git
+cd todos
+```
 
-## Laravel Sponsors
+### 2. Pasang Dependensi Backend (Composer)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```bash
+composer install
+```
 
-### Premium Partners
+### 3. Pasang Dependensi Frontend (npm)
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+```bash
+npm install
+npm run build
+```
 
-## Contributing
+### 4. Salin Fail `.env` dan Konfigurasi
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+cp .env.example .env
+```
 
-## Code of Conduct
+> atau rename  `.env.example` kepada `.env`
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Edit konfigurasi sambungan pangkalan data dalam `.env`:
 
-## Security Vulnerabilities
+```bash
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=todos
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 5. Jana Key Aplikasi
 
-## License
+```bash
+php artisan key:generate
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 6. Jalankan Migrasi dan Seeder
+
+```bash
+php artisan migrate --seed
+```
+Ini akan:
+-   Mencipta semua jadual
+-   Menambah data permulaan termasuk pengguna demo
+
+### 🔐 Akaun Login Lalai (Demo)
+| Peranan | Email  | Kata Laluan| Role |
+|--|--|--|--|
+| Super Admin | super@todo.com | password | Super Admin |
+| Admin | admin@todo.com | password |  Admin |
+| User| user@todo.com | password |  User|
+
+### 📂 Struktur Projek (Ringkas)
+
+```php
+app/
+├── Livewire/        # Komponen Livewire
+├── Models/          # Model Eloquent
+database/
+├── migrations/      # Fail migrasi
+├── seeders/         # Data permulaan
+routes/
+├── web.php          # Laluan Web
+resources/
+├── views/           # Fail Blade (UI)
+public/
+├── build/           # Asset terhasil dari Vite
+```
+
+### 🧪 Perintah Tambahan
+
+```bash
+# Reset dan seed semula pangkalan data
+php artisan migrate:fresh --seed
+
+# Kosongkan cache
+php artisan oonfig:cache
+```
+
+## ⚙️ Menjana Komponen Livewire dan Route
+
+Gunakan perintah berikut untuk menjana komponen Livewire:
+
+```bash
+php artisan make:livewire NamaKomponen
+```
+
+Contoh 1:
+```bash
+php artisan make:livewire Mohon/MohonIndex
+```
+Ia akan menjana:
+-   `app/Livewire/Mohon/MohonIndex.php`
+-   `resources/views/livewire/mohon/mohon-index.blade.php`
+
+Contoh 2:
+```bash
+php artisan make:livewire Mohon/MohonCreate
+```
+Ia akan menjana:
+-   `app/Livewire/Mohon/MohonCreate.php`
+-   `resources/views/livewire/mohon/mohon-create.blade.php`
+
+### 🛣️ Menambah Route Untuk Komponen Livewire
+
+```php
+use App\Livewire\Mohon\MohonIndex;
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/mohon', MohonIndex::class)->name('mohon.index');
+    Route::get('/mohon/create', MohonCreate::class)->name('mohon.create');
+});
+
+```
+
+Jika menggunakan layout
+
+```php
+use Livewire\Component;
+
+class MohonIndex extends Component
+{
+    public function render()
+    {
+        return view('livewire.mohon.index')
+            ->layout('layouts.app'); // Pastikan layout wujud
+    }
+}
+```
+
+
+## 🚀 Sedia Untuk Production?
+Untuk deploy ke production (contoh: VPS, Laravel Forge):
+
+```bash
+composer install --optimize-autoloader --no-dev
+php artisan migrate --force
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+npm run build
+```
+## 📜 Lesen
+
+Projek ini adalah **Open Source**. Anda bebas untuk menggunakannya bagi tujuan pembelajaran, pembangunan dalaman, atau menyesuaikannya mengikut keperluan organisasi anda.
+
+## 🎨 Kredit Pembangun
+
+Projek ini dibangunkan oleh:
+
+**Zaki Mustafa**  
+📧 Email: [mzm@ns.gov.my]  
+🔗 GitHub: [https://github.com/mzm-dev](https://github.com/mzm-dev)
+
+Sumbangan dan pembaikan amat dialu-alukan melalui pull request atau cadangan isu di GitHub.
