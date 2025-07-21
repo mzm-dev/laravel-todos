@@ -28,6 +28,15 @@ class RolePermission extends Component
         $this->resetValidation();
     }
 
+    function update()
+    {
+        $this->role->syncPermissions($this->permission_ids);
+
+        $this->dispatch('syncPermissionUpdated', [
+            'id' => $this->role->id,
+        ]);
+    }
+
     public function render()
     {
         $permissions = Permission::all();
