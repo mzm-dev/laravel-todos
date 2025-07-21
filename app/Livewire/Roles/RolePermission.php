@@ -19,12 +19,12 @@ class RolePermission extends Component
 
         $this->role = $role;
 
-        $this->permission_ids = $role->permissions->pluck('id')->toArray();
+        $this->permission_ids = $role->permissions->pluck('name')->toArray();
     }
 
     public function clearModalValidation()
     {
-        $this->permission_ids = $this->role->permissions->pluck('id')->toArray();
+        $this->permission_ids = $this->role->permissions->pluck('name')->toArray();
         $this->resetValidation();
     }
 
