@@ -117,7 +117,25 @@
                         'success'
                     );
                 });
-            }
+            },
+            watingUpdatePermission() {
+                Swal.fire({
+                    text: 'Record sedang dikemaskini.',
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+                $wire.on('syncPermissionUpdated', (event) => {
+
+                    $wire.dispatch('close-modal', 'rolePermissionModal' + event[0].id);
+
+                    Swal.fire(
+                        'Kemaskini!',
+                        'Record telah dikemaskini.',
+                        'success'
+                    );
+                });
+            },
         }));
     </script>
 @endscript
