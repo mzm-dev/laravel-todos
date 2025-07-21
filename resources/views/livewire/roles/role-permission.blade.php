@@ -8,18 +8,20 @@
                     </h2>
                 </div>
                 <div class="card-body p-4">
-                    @foreach ($permissions as $key => $permission)
-                        <div class="flex items-center me-4 mb-2">
-                            <input type="checkbox" id="checkbox-{{ $permission->id }}-{{ $key }}" wire:model="permission_ids"
-                                value="{{ $permission->id }}"
-                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600  focus:ring-2 ">
-                            <label for="checkbox-{{ $permission->id }}-{{ $key }}" class="ms-2 text-sm font-medium text-gray-900">
-                                {{ $permission->name }}
-                            </label>
-                        </div>
-                    @endforeach
+                    <div class="m-2 overflow-auto w-full h-96">
+                        @foreach ($permissions as $key => $permission)
+                            <div class="flex items-center m-3">
+                                <input type="checkbox" id="checkbox-{{ $permission->id }}{{ $key }}"
+                                    wire:model="permission_ids" value="{{ $permission->name }}"
+                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600  focus:ring-2 ">
+                                <label for="checkbox-{{ $permission->id }}{{ $key }}"
+                                    class="ms-2 text-sm font-medium text-gray-900">
+                                    {{ $permission->name }}
+                                </label>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
-
                 <div class="card-footer p-4 bg-gray-100 border-t border-gray-200 mt-6 flex justify-end">
                     <x-secondary-button type="button" x-on:click="$dispatch('close');  $wire.clearModalValidation?.();"
                         class="ms-1">
